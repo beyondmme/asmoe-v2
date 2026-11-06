@@ -204,7 +204,7 @@ Sentences in the results whose direction depends on the final numbers are wrappe
                   Potato Leaf Disease Classification in Uncontrolled Environments},
   author       = {<Author Names>},
   year         = {2026},
-  howpublished = {\url{https://github.com/beyondmme/asmoe-potato-v2}}
+  howpublished = {\url{https://github.com/beyondmme/asmoe-v2}}
 }
 ```
 
