@@ -1,0 +1,45 @@
+# ASMOE V2 — default configuration (fits a single 16 GB GPU, e.g. Kaggle P100/T4, with AMP + grad-checkpointing)
+experiment_name: asmoe_v2
+data:
+  root: "/kaggle/input/datasets/warcoder/potato-leaf-disease-dataset/Potato Leaf Disease Dataset in Uncontrolled Environment"
+  cache_dir: outputs/cache
+  cache_max_side: 640
+  image_size: 512          # loader resolution; each expert resizes to its own native size below
+  roi_crop: true
+  near_dup_threshold: 2
+  n_folds: 5
+  fold_seed: 42
+  num_workers: 4
+  rotation: 20
+  brightness: 0.15
+  contrast: 0.15
+  mixup_alpha: 0.2
+  mixup_prob: 0.5
+model:
+  arch: asmoe
+  experts:
+    - {name: densenet201.tv_in1k,                              role: local-texture,    image_size: 512, grad_checkpointing: true}
+    - {name: tf_efficientnetv2_m.in21k_ft_in1k,                role: multi-scale,      image_size: 480, grad_checkpointing: true}
+    - {name: swin_base_patch4_window12_384.ms_in22k_ft_in1k,   role: global-attention, image_size: 384, grad_checkpointing: true}
+  proj_dim: 512
+  router_hidden: 256
+  router_mode: adaptive
+train:
+  output_dir: outputs
+  batch_size: 8
+  grad_accum: 4            # effective batch 32
+  amp: true
+  stage1_epochs: 5
+  stage2_epochs: 40
+  lr_backbone: 1.0e-5
+  lr_head: 3.0e-4
+  weight_decay: 0.05
+  warmup_epochs: 2
+  patience: 8
+  label_smoothing: 0.05
+  loss: ce                 # or "focal"
+  class_weight: sqrt
+  supcon_weight: 0.1
+  balance_weight: 0.01
+  ema_decay: 0.999
+  tta: true
