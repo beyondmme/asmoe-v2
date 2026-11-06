@@ -1,0 +1,89 @@
+%Version 3.1 December 2024 -- Springer Nature LaTeX template (sn-jnl), adapted for ASMOE V2.
+%
+% THIS IS THE SOURCE SKELETON. Do not upload it to Overleaf directly.
+% `python train.py paper` replaces every %%@... marker below and writes ONE self-contained file,
+% paper/build/sn-article.tex, as required by the template ("do not use \input").
+%   %%@MACROS            -> auto-generated numbers from the experiment results (results/*)
+%   %%@SECTION <file>    -> paper/sections/<file>.tex, with its \input{tables/...} expanded inline
+% Edit authors, title and keywords here; edit body text in paper/sections/.
+
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style
+
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+\usepackage[T5,T1]{fontenc}% T5 = Vietnamese glyphs for the author names, T1 = default text
+\newcommand{\vn}[1]{{\fontencoding{T5}\selectfont #1}}% wrap Vietnamese text: \vn{Trần}
+
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%
+\newtheorem{proposition}[theorem]{Proposition}%
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+
+%%================ auto-generated result macros (do not edit) ================%%
+%%@MACROS
+%%==========================================================================%%
+
+% \checkclaim{...} renders orange only while \checkclaimdrafttrue (no sentence uses it now).
+\newif\ifcheckclaimdraft \checkclaimdraftfalse
+\newcommand{\checkclaim}[1]{\ifcheckclaimdraft\textcolor{orange}{#1}\else#1\fi}
+\newcommand{\safegraphic}[2][width=0.9\textwidth]{\IfFileExists{#2}{\includegraphics[#1]{#2}}{\fbox{\parbox{0.8\textwidth}{\centering\small\texttt{\detokenize{#2}} --- pending experiment}}}}
+
+\begin{document}
+
+\title[ASMOE V2 for potato leaf disease classification]{ASMOE V2: Heterogeneous Mixture-of-Experts with Adaptive Soft Routing for Potato Leaf Disease Classification in Uncontrolled Environments}
+
+% Authors. \author* = corresponding author. \fnm = given names, \sur = family name (Springer prints
+% given names first). Vietnamese letters go inside \vn{...}.
+\author*[1]{\fnm{\vn{Long Vũ}} \sur{\vn{Trần}}}\email{vutran.03092006@gmail.com}
+
+\author[1]{\fnm{\vn{Hoàng Anh Kiệt}} \sur{\vn{Nguyễn}}}\email{kiet.nguyen20067@gmail.com}
+
+\author[1]{\fnm{\vn{Ngọc Thành Nhân}} \sur{\vn{Nguyễn}}}\email{nnmtreallove@gmail.com}
+
+\affil*[1]{\orgname{FPT University}, \orgaddress{\city{Da Nang}, \country{Vietnam}}}
+
+\abstract{%
+%%@SECTION 00_abstract
+}
+
+\keywords{Potato leaf disease, Mixture-of-Experts, Adaptive soft routing, Class imbalance, Data leakage, Grad-CAM}
+
+\maketitle
+
+%%@SECTION 01_introduction
+
+%%@SECTION 02_dataset_audit
+
+%%@SECTION 03_methods
+
+%%@SECTION 04_results
+
+%%@SECTION 05_discussion
+
+%%@SECTION 06_conclusion
+
+\backmatter
+
+%%@SECTION 07_declarations
+
+\bibliography{sn-bibliography}
+
+\end{document}
