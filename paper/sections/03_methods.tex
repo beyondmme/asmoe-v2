@@ -16,16 +16,7 @@ contrastive objective). Figure~\ref{fig:asmoe_arch} gives an overview.
 % copied into paper/build/figures/ on every rebuild.
 \begin{figure}[h]
 \centering
-\IfFileExists{figures/asmoe_architecture.pdf}{\includegraphics[width=\textwidth]{figures/asmoe_architecture.pdf}}{%
-\IfFileExists{figures/asmoe_architecture.png}{\includegraphics[width=\textwidth]{figures/asmoe_architecture.png}}{%
-\fbox{\parbox{0.95\textwidth}{\centering\small
-Input $x$ (ROI crop, $512^2$) $\;\rightarrow\;$
-\{ DenseNet-201 @$512$ \,|\, EfficientNetV2-M @$480$ \,|\, Swin-B @$384$ \}
-$\;\rightarrow\; F_e$ $\;\rightarrow\;$ FPM$_e$: LN $+$ $1{\times}1$ Conv $\rightarrow P_e\in\mathbb{R}^{512\times h_e\times w_e}$
-$\;\rightarrow\;$ GAP $\rightarrow z_e$ \\[3pt]
-$[z_1\Vert z_2\Vert z_3] \rightarrow$ MLP $\rightarrow$ softmax $\rightarrow w$
-$\;\rightarrow\; z=\sum_e w_e z_e \;\rightarrow\;$ Linear $\rightarrow \hat{y}$
-\quad and \quad $z\rightarrow g(\cdot)\rightarrow$ SupCon}}}}
+\includegraphics[width=\textwidth]{figures/white_diagram_asmoe.png}
 \caption{ASMOE~V2 overview. Each expert sees the image at its native resolution;
 the Feature Projection Module (FPM) aligns heterogeneous feature maps; the soft
 router produces per-image expert weights.}
