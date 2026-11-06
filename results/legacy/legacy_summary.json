@@ -1,0 +1,773 @@
+{
+  "sources": [
+    "Potato_Improved.zip",
+    "Potato.zip"
+  ],
+  "class_totals": {
+    "Bacteria": 569,
+    "Fungi": 748,
+    "Healthy": 201,
+    "Nematode": 68,
+    "Pest": 611,
+    "Phytopthora": 347,
+    "Virus": 532
+  },
+  "n_images": 3076,
+  "imbalance_ratio": 11.0,
+  "val_support_range": {
+    "Bacteria": [
+      109,
+      117
+    ],
+    "Fungi": [
+      148,
+      151
+    ],
+    "Healthy": [
+      31,
+      45
+    ],
+    "Nematode": [
+      11,
+      17
+    ],
+    "Pest": [
+      115,
+      139
+    ],
+    "Phytopthora": [
+      62,
+      76
+    ],
+    "Virus": [
+      96,
+      114
+    ]
+  },
+  "exact_duplicates": {
+    "files": 110,
+    "groups": 55,
+    "conflict_groups": 6,
+    "conflict_label_pairs": [
+      [
+        "Pest",
+        "Virus"
+      ],
+      [
+        "Healthy",
+        "Pest"
+      ],
+      [
+        "Fungi",
+        "Pest"
+      ],
+      [
+        "Fungi",
+        "Pest"
+      ],
+      [
+        "Fungi",
+        "Pest"
+      ],
+      [
+        "Nematode",
+        "Pest"
+      ]
+    ],
+    "same_label_groups": 49,
+    "redundant_copies_by_class": {
+      "Virus": 1,
+      "Phytopthora": 38,
+      "Fungi": 5,
+      "Pest": 4,
+      "Healthy": 1
+    }
+  },
+  "near_duplicates": {
+    "pairs": 27,
+    "cross_label_pairs": 0,
+    "by_class": {
+      "Fungi": 9,
+      "Virus": 7,
+      "Phytopthora": 5,
+      "Bacteria": 4,
+      "Pest": 2
+    },
+    "dhash_distance_counts": {
+      "0": 5,
+      "1": 13,
+      "2": 9
+    }
+  },
+  "group_aware_cv": {
+    "EffNet_MobileViT_ECA_Gated": {
+      "accuracy": [
+        83.5236541598695,
+        81.99672667757774,
+        85.73743922204214,
+        85.6910569105691,
+        80.80645161290323
+      ],
+      "macro_f1": [
+        82.82526032645704,
+        80.13880626723106,
+        84.420101620326,
+        84.63883438151242,
+        78.59082786961157
+      ],
+      "mcc": [
+        0.8001454623773607,
+        0.7823639534612171,
+        0.8271815580454869,
+        0.8273230602221131,
+        0.7670164297722621
+      ],
+      "best_epoch": [
+        4,
+        4,
+        13,
+        10,
+        3
+      ],
+      "per_class_f1": {
+        "Bacteria": [
+          0.9344262295081968,
+          0.9547325102880658,
+          0.9572649572649573,
+          0.9821428571428571,
+          0.9369369369369369
+        ],
+        "Fungi": [
+          0.8040540540540541,
+          0.825503355704698,
+          0.8306709265175719,
+          0.833922261484099,
+          0.7372013651877133
+        ],
+        "Healthy": [
+          0.8131868131868132,
+          0.6862745098039216,
+          0.7777777777777778,
+          0.8367346938775511,
+          0.717948717948718
+        ],
+        "Nematode": [
+          0.7894736842105263,
+          0.7692307692307693,
+          0.8205128205128205,
+          0.7857142857142857,
+          0.6451612903225806
+        ],
+        "Pest": [
+          0.730593607305936,
+          0.7341772151898734,
+          0.8425925925925926,
+          0.7866108786610879,
+          0.7849056603773585
+        ],
+        "Phytopthora": [
+          0.8421052631578947,
+          0.7971014492753623,
+          0.8130081300813008,
+          0.8251748251748252,
+          0.8533333333333334
+        ],
+        "Virus": [
+          0.8839285714285714,
+          0.8426966292134831,
+          0.867579908675799,
+          0.8744186046511628,
+          0.8258706467661692
+        ]
+      },
+      "pooled_cm": [
+        [
+          556,
+          5,
+          1,
+          0,
+          2,
+          0,
+          5
+        ],
+        [
+          12,
+          598,
+          19,
+          12,
+          66,
+          28,
+          13
+        ],
+        [
+          0,
+          3,
+          176,
+          0,
+          5,
+          0,
+          17
+        ],
+        [
+          0,
+          3,
+          0,
+          62,
+          2,
+          1,
+          0
+        ],
+        [
+          13,
+          64,
+          33,
+          11,
+          456,
+          14,
+          20
+        ],
+        [
+          3,
+          42,
+          1,
+          6,
+          15,
+          276,
+          4
+        ],
+        [
+          14,
+          20,
+          28,
+          3,
+          19,
+          2,
+          446
+        ]
+      ],
+      "class_names": [
+        "Bacteria",
+        "Fungi",
+        "Healthy",
+        "Nematode",
+        "Pest",
+        "Phytopthora",
+        "Virus"
+      ],
+      "pooled_recall": {
+        "Bacteria": 0.9771528998242531,
+        "Fungi": 0.7994652406417112,
+        "Healthy": 0.8756218905472637,
+        "Nematode": 0.9117647058823529,
+        "Pest": 0.7463175122749591,
+        "Phytopthora": 0.7953890489913544,
+        "Virus": 0.8383458646616542
+      },
+      "top_confusions": [
+        {
+          "true": "Fungi",
+          "pred": "Pest",
+          "count": 66,
+          "rate_of_true": 0.08823529411764706
+        },
+        {
+          "true": "Pest",
+          "pred": "Fungi",
+          "count": 64,
+          "rate_of_true": 0.10474631751227496
+        },
+        {
+          "true": "Phytopthora",
+          "pred": "Fungi",
+          "count": 42,
+          "rate_of_true": 0.12103746397694524
+        },
+        {
+          "true": "Pest",
+          "pred": "Healthy",
+          "count": 33,
+          "rate_of_true": 0.054009819967266774
+        },
+        {
+          "true": "Virus",
+          "pred": "Healthy",
+          "count": 28,
+          "rate_of_true": 0.05263157894736842
+        },
+        {
+          "true": "Fungi",
+          "pred": "Phytopthora",
+          "count": 28,
+          "rate_of_true": 0.0374331550802139
+        },
+        {
+          "true": "Virus",
+          "pred": "Fungi",
+          "count": 20,
+          "rate_of_true": 0.03759398496240601
+        },
+        {
+          "true": "Pest",
+          "pred": "Virus",
+          "count": 20,
+          "rate_of_true": 0.03273322422258593
+        }
+      ]
+    },
+    "MobileViT_Standalone": {
+      "accuracy": [
+        86.13376835236541,
+        83.46972176759411,
+        84.11669367909238,
+        86.34146341463415,
+        84.51612903225806
+      ],
+      "macro_f1": [
+        84.35199163673933,
+        81.36966641451117,
+        83.55716716400067,
+        85.14526011292884,
+        83.96235749348976
+      ],
+      "mcc": [
+        0.8316873545356388,
+        0.7993266996049891,
+        0.8070065279363084,
+        0.8349446152100571,
+        0.8115856837495734
+      ],
+      "best_epoch": [
+        12,
+        14,
+        13,
+        13,
+        9
+      ],
+      "per_class_f1": {
+        "Bacteria": [
+          0.9565217391304348,
+          0.926829268292683,
+          0.9691629955947136,
+          0.9863013698630136,
+          0.9464285714285714
+        ],
+        "Fungi": [
+          0.8349514563106796,
+          0.845360824742268,
+          0.7806451612903226,
+          0.8384879725085911,
+          0.7847222222222222
+        ],
+        "Healthy": [
+          0.8636363636363636,
+          0.7816091954022989,
+          0.7912087912087912,
+          0.7956989247311828,
+          0.7777777777777778
+        ],
+        "Nematode": [
+          0.7368421052631579,
+          0.7142857142857143,
+          0.7894736842105263,
+          0.8,
+          0.8
+        ],
+        "Pest": [
+          0.7926267281105991,
+          0.7704918032786885,
+          0.7719298245614035,
+          0.7873303167420814,
+          0.7985074626865671
+        ],
+        "Phytopthora": [
+          0.8070175438596491,
+          0.8307692307692308,
+          0.8617886178861789,
+          0.868421052631579,
+          0.9113924050632911
+        ],
+        "Virus": [
+          0.9130434782608695,
+          0.826530612244898,
+          0.8847926267281107,
+          0.8839285714285714,
+          0.8585365853658536
+        ]
+      },
+      "pooled_cm": [
+        [
+          548,
+          8,
+          2,
+          2,
+          0,
+          2,
+          7
+        ],
+        [
+          8,
+          608,
+          8,
+          14,
+          69,
+          26,
+          15
+        ],
+        [
+          0,
+          1,
+          173,
+          0,
+          10,
+          0,
+          17
+        ],
+        [
+          1,
+          5,
+          0,
+          61,
+          1,
+          0,
+          0
+        ],
+        [
+          5,
+          76,
+          27,
+          9,
+          462,
+          6,
+          26
+        ],
+        [
+          6,
+          31,
+          0,
+          5,
+          8,
+          291,
+          6
+        ],
+        [
+          9,
+          12,
+          20,
+          0,
+          17,
+          5,
+          469
+        ]
+      ],
+      "class_names": [
+        "Bacteria",
+        "Fungi",
+        "Healthy",
+        "Nematode",
+        "Pest",
+        "Phytopthora",
+        "Virus"
+      ],
+      "pooled_recall": {
+        "Bacteria": 0.9630931458699473,
+        "Fungi": 0.8128342245989305,
+        "Healthy": 0.8606965174129353,
+        "Nematode": 0.8970588235294118,
+        "Pest": 0.7561374795417348,
+        "Phytopthora": 0.8386167146974063,
+        "Virus": 0.881578947368421
+      },
+      "top_confusions": [
+        {
+          "true": "Pest",
+          "pred": "Fungi",
+          "count": 76,
+          "rate_of_true": 0.12438625204582651
+        },
+        {
+          "true": "Fungi",
+          "pred": "Pest",
+          "count": 69,
+          "rate_of_true": 0.09224598930481283
+        },
+        {
+          "true": "Phytopthora",
+          "pred": "Fungi",
+          "count": 31,
+          "rate_of_true": 0.0893371757925072
+        },
+        {
+          "true": "Pest",
+          "pred": "Healthy",
+          "count": 27,
+          "rate_of_true": 0.044189852700491
+        },
+        {
+          "true": "Pest",
+          "pred": "Virus",
+          "count": 26,
+          "rate_of_true": 0.0425531914893617
+        },
+        {
+          "true": "Fungi",
+          "pred": "Phytopthora",
+          "count": 26,
+          "rate_of_true": 0.034759358288770054
+        },
+        {
+          "true": "Virus",
+          "pred": "Healthy",
+          "count": 20,
+          "rate_of_true": 0.03759398496240601
+        },
+        {
+          "true": "Virus",
+          "pred": "Pest",
+          "count": 17,
+          "rate_of_true": 0.03195488721804511
+        }
+      ]
+    }
+  },
+  "training_diagnostics": {
+    "EffNet_MobileViT_ECA_Gated": [
+      {
+        "fold": 1,
+        "epochs_run": 8,
+        "best_epoch": 4,
+        "final_train_loss": 0.2115425539766016,
+        "final_val_loss": 0.4573711535998211
+      },
+      {
+        "fold": 2,
+        "epochs_run": 8,
+        "best_epoch": 7,
+        "final_train_loss": 0.3078499804041206,
+        "final_val_loss": 0.4813020179587768
+      },
+      {
+        "fold": 3,
+        "epochs_run": 14,
+        "best_epoch": 13,
+        "final_train_loss": 0.0955602612587668,
+        "final_val_loss": 0.5324413536325537
+      },
+      {
+        "fold": 4,
+        "epochs_run": 14,
+        "best_epoch": 10,
+        "final_train_loss": 0.0949938742962182,
+        "final_val_loss": 0.4959869282456433
+      },
+      {
+        "fold": 5,
+        "epochs_run": 7,
+        "best_epoch": 4,
+        "final_train_loss": 0.2542169525952409,
+        "final_val_loss": 0.5356931978355973
+      }
+    ],
+    "MobileViT_Standalone": [
+      {
+        "fold": 1,
+        "epochs_run": 14,
+        "best_epoch": 12,
+        "final_train_loss": 0.3989657384982099,
+        "final_val_loss": 0.4311590653526647
+      },
+      {
+        "fold": 2,
+        "epochs_run": 14,
+        "best_epoch": 14,
+        "final_train_loss": 0.3720312807913,
+        "final_val_loss": 0.4965017590909562
+      },
+      {
+        "fold": 3,
+        "epochs_run": 14,
+        "best_epoch": 13,
+        "final_train_loss": 0.3660731221624582,
+        "final_val_loss": 0.4603856135630675
+      },
+      {
+        "fold": 4,
+        "epochs_run": 14,
+        "best_epoch": 13,
+        "final_train_loss": 0.3819056828406006,
+        "final_val_loss": 0.41408871352612
+      },
+      {
+        "fold": 5,
+        "epochs_run": 13,
+        "best_epoch": 9,
+        "final_train_loss": 0.3893049209945947,
+        "final_val_loss": 0.4571272818551909
+      }
+    ]
+  },
+  "max_epochs_observed": 14,
+  "legacy_lrs": {
+    "backbone": 2e-05,
+    "head": 0.0005
+  },
+  "policy_screen": [
+    {
+      "experiment_id": "54a10b65880951",
+      "augmentation": "none",
+      "class_weight": "sqrt",
+      "screen_macro_f1": 74.65221083967151,
+      "screen_weighted_f1": 74.94884809257974,
+      "screen_nematode_recall": 0.8125,
+      "screen_pest_recall": 0.4565217391304348
+    },
+    {
+      "experiment_id": "306a8c87df9c43",
+      "augmentation": "none",
+      "class_weight": "none",
+      "screen_macro_f1": 70.89460299048369,
+      "screen_weighted_f1": 74.31852441443466,
+      "screen_nematode_recall": 0.34375,
+      "screen_pest_recall": 0.4652173913043478
+    },
+    {
+      "experiment_id": "9b10eff3846eeb",
+      "augmentation": "mixup",
+      "class_weight": "none",
+      "screen_macro_f1": 69.26749244038812,
+      "screen_weighted_f1": 73.07566110844525,
+      "screen_nematode_recall": 0.3125,
+      "screen_pest_recall": 0.43043478260869567
+    },
+    {
+      "experiment_id": "d7414420589c4d",
+      "augmentation": "cutmix",
+      "class_weight": "none",
+      "screen_macro_f1": 57.893413673807075,
+      "screen_weighted_f1": 66.67995799892411,
+      "screen_nematode_recall": 0.03125,
+      "screen_pest_recall": 0.3
+    }
+  ],
+  "architecture_screen": [
+    {
+      "model": "EffNet_MobileViT_ECA_Gated",
+      "best_epoch": 4,
+      "accuracy": 83.5236541598695,
+      "macro_f1": 82.82526032645704,
+      "mcc": 0.8001454623773607
+    },
+    {
+      "model": "EffNet_MobileViT_ECA_Concat",
+      "best_epoch": 4,
+      "accuracy": 79.9347471451876,
+      "macro_f1": 79.41595684272004,
+      "mcc": 0.758573604681243
+    },
+    {
+      "model": "EffNet_MobileViT_Concat",
+      "best_epoch": 4,
+      "accuracy": 78.62969004893964,
+      "macro_f1": 78.08612238724005,
+      "mcc": 0.7429670094115577
+    },
+    {
+      "model": "MobileViT_Standalone",
+      "best_epoch": 4,
+      "accuracy": 76.83523654159869,
+      "macro_f1": 75.25963068433825,
+      "mcc": 0.7228807300155483
+    }
+  ],
+  "random_split_cv": {
+    "MobileViT": {
+      "accuracy": [
+        89.77,
+        92.68,
+        89.27,
+        89.59,
+        88.13
+      ],
+      "macro_f1": [
+        86.04,
+        92.5,
+        88.06,
+        88.35,
+        85.86
+      ],
+      "mcc": [
+        0.8752,
+        0.9115,
+        0.8702,
+        0.8737,
+        0.8557
+      ],
+      "final_train_loss": [
+        0.0182,
+        0.0338,
+        0.0294,
+        0.0201,
+        0.0167
+      ]
+    },
+    "EfficientNetB0": {
+      "accuracy": [
+        86.85,
+        89.27,
+        87.15,
+        83.74,
+        87.32
+      ],
+      "macro_f1": [
+        83.99,
+        89.12,
+        84.76,
+        80.39,
+        86.88
+      ],
+      "mcc": [
+        0.8393,
+        0.8697,
+        0.8446,
+        0.8029,
+        0.8455
+      ],
+      "final_train_loss": [
+        0.0081,
+        0.011,
+        0.0124,
+        0.0115,
+        0.0054
+      ]
+    },
+    "EffNet_MobileViT_Sequential": {
+      "accuracy": [
+        85.39,
+        88.29,
+        84.88,
+        86.02,
+        85.85
+      ],
+      "macro_f1": [
+        83.29,
+        87.7,
+        82.76,
+        83.96,
+        85.31
+      ],
+      "mcc": [
+        0.8215,
+        0.8578,
+        0.8165,
+        0.8308,
+        0.8282
+      ],
+      "final_train_loss": [
+        0.0802,
+        0.1017,
+        0.0803,
+        0.1048,
+        0.1003
+      ]
+    }
+  }
+}
