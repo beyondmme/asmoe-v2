@@ -1,0 +1,15 @@
+# ASMOE V2-Large — ConvNeXt-B / EfficientNetV2-L / Swin-L (needs >= 40 GB GPU, e.g. A100)
+experiment_name: asmoe_v2_large
+data:
+  root: "/kaggle/input/datasets/warcoder/potato-leaf-disease-dataset/Potato Leaf Disease Dataset in Uncontrolled Environment"
+  image_size: 512
+model:
+  experts:
+    - {name: convnext_base.fb_in22k_ft_in1k_384,               role: local-texture,    image_size: 512, grad_checkpointing: true}
+    - {name: tf_efficientnetv2_l.in21k_ft_in1k,                role: multi-scale,      image_size: 480, grad_checkpointing: true}
+    - {name: swin_large_patch4_window12_384.ms_in22k_ft_in1k,  role: global-attention, image_size: 384, grad_checkpointing: true}
+train:
+  output_dir: outputs
+  batch_size: 8
+  grad_accum: 4
+  ema_decay: 0.999

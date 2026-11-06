@@ -1,0 +1,25 @@
+# Tiny CPU configuration used by tests/ and the notebook's dry-run mode (random weights, synthetic data)
+experiment_name: smoke
+data:
+  root: outputs/synthetic_potato
+  cache_dir: outputs/cache_smoke
+  cache_max_side: 96
+  image_size: 64
+  num_workers: 0
+  n_folds: 2
+model:
+  experts:
+    - {name: resnet18,         role: local-texture,    pretrained: false}
+    - {name: efficientnet_b0,  role: multi-scale,      pretrained: false, image_size: 96}
+    - {name: swin_tiny_patch4_window7_224, role: global-attention, pretrained: false, image_size: 224}
+  proj_dim: 32
+  router_hidden: 16
+  supcon_dim: 16
+train:
+  output_dir: outputs/smoke
+  batch_size: 4
+  grad_accum: 1
+  stage1_epochs: 1
+  stage2_epochs: 1
+  amp: false
+  ema_decay: 0.9

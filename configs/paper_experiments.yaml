@@ -1,0 +1,24 @@
+# Experiments shown in the paper. `train.py suite` runs every entry; overleaf_sync reads their outputs.
+legacy_baseline: MobileViT_Standalone
+main:
+  name: asmoe_v2
+  label: "ASMOE V2 (ours)"
+  config: configs/asmoe_v2.yaml
+  res: "512/480/384"
+  expert_labels: ["DenseNet-201", "EffNetV2-M", "Swin-B"]
+single_experts:
+  - {name: single_densenet201, label: "DenseNet-201", expert: densenet201.tv_in1k, res: "512"}
+  - {name: single_effnetv2m,   label: "EfficientNetV2-M", expert: tf_efficientnetv2_m.in21k_ft_in1k, res: "480"}
+  - {name: single_swinb,       label: "Swin-B", expert: swin_base_patch4_window12_384.ms_in22k_ft_in1k, res: "384"}
+ablations:
+  - name: abl_res224
+    label: '224\,px inputs (all experts)'
+    overrides:
+      - data.image_size=224
+      - "model.experts=[{name: densenet201.tv_in1k, image_size: 224}, {name: tf_efficientnetv2_m.in21k_ft_in1k, image_size: 224}, {name: swin_base_patch4_window7_224.ms_in22k_ft_in1k, image_size: 224}]"
+  - {name: abl_no_roi,         label: "w/o ROI leaf cropping",         overrides: [data.roi_crop=false]}
+  - {name: abl_no_supcon,      label: "w/o Supervised Contrastive loss", overrides: [train.supcon_weight=0]}
+  - {name: abl_focal,          label: "Focal loss instead of CE",       overrides: [train.loss=focal]}
+  - {name: abl_uniform_router, label: "Uniform (non-adaptive) routing", overrides: [model.router_mode=uniform]}
+  - {name: abl_single_stage,   label: "Single-stage training",          overrides: [train.stage1_epochs=0]}
+  - {name: abl_no_mixup,       label: "w/o MixUp",                      overrides: [data.mixup_prob=0]}
