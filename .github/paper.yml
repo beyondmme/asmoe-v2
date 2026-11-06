@@ -1,0 +1,98 @@
+# Rebuilds the Springer Nature manuscript whenever new results or paper text land on main:
+#   results/** (pushed by the Kaggle notebook) --> paper/build/sn-article.tex + figures + PDF
+# then commits paper/build back to the repo and, if the OVERLEAF_GIT_TOKEN secret exists,
+# pushes the same files into the Overleaf project.
+name: Build paper
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "results/**"
+      - "paper/sections/**"
+      - "paper/template/**"
+      - "paper/sn-bibliography.bib"
+      - "src/**"
+      - "scripts/check_tex.py"
+      - "configs/paper_experiments.yaml"
+      - ".github/workflows/paper.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-paper
+  cancel-in-progress: false
+
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    env:
+      OVERLEAF_GIT_TOKEN: ${{ secrets.OVERLEAF_GIT_TOKEN }}
+      OVERLEAF_GIT_URL: ${{ vars.OVERLEAF_GIT_URL || 'https://git.overleaf.com/6ae6eb411f26b6a0c2f760f8' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-paper.txt
+
+      - name: Install (no PyTorch needed)
+        run: pip install -r requirements-paper.txt
+
+      - name: results/ -> tables, figures, macros -> paper/build/sn-article.tex
+        run: python train.py paper
+
+      - name: Static LaTeX checks
+        run: python scripts/check_tex.py
+
+      - name: Compile PDF (TeX Live)
+        id: compile
+        continue-on-error: true
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: sn-article.tex
+          working_directory: paper/build
+
+      - name: Upload Overleaf-ready folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: overleaf-upload
+          path: |
+            paper/build/sn-article.tex
+            paper/build/sn-bibliography.bib
+            paper/build/sn-jnl.cls
+            paper/build/sn-mathphys-num.bst
+            paper/build/figures/
+
+      - name: Upload PDF
+        if: steps.compile.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-pdf
+          path: paper/build/sn-article.pdf
+
+      - name: Commit rebuilt paper to the repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add paper/build results
+          if git diff --cached --quiet; then
+            echo "paper unchanged"
+          else
+            git commit -m "paper: rebuild from results [skip ci]"
+            for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 10; done
+          fi
+
+      - name: Push to Overleaf
+        if: env.OVERLEAF_GIT_TOKEN != ''
+        run: python -m src.utils.overleaf_sync --push --overleaf-url "$OVERLEAF_GIT_URL" --message "auto-sync from GitHub ${GITHUB_SHA::7}"
+
+      - name: Fail if the PDF did not compile
+        if: steps.compile.outcome != 'success'
+        run: |
+          echo "::error::LaTeX compilation failed - see the 'Compile PDF' step log"
+          exit 1
