@@ -1,4 +1,4 @@
- # ASMOE V2 · Potato Leaf Disease Classification in Uncontrolled Environments
+# ASMOE V2 · Potato Leaf Disease Classification in Uncontrolled Environments
 
 **Adaptive Soft Mixture-of-Experts** with heterogeneous backbones (DenseNet-201 · EfficientNetV2-M · Swin-B),
 a leakage-free data pipeline, and a manuscript in the **Springer Nature LaTeX template** whose numbers,
