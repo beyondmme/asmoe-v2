@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.cls -text
+*.bst -text
+*.ipynb text eol=lf

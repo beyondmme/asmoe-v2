@@ -1,0 +1,22 @@
+# heavy / local run artefacts (checkpoints never go to git)
+outputs/
+*.pt
+*.pth
+*.ckpt
+dist/
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.zip
+
+# paper intermediates (paper/build/ IS committed: it is the Overleaf-ready manuscript)
+paper/_generated/
+paper/build/*.aux
+paper/build/*.log
+paper/build/*.bbl
+paper/build/*.blg
+paper/build/*.fls
+paper/build/*.fdb_latexmk
+paper/build/*.out
+paper/build/*.synctex.gz
