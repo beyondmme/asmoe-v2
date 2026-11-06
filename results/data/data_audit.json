@@ -1,0 +1,402 @@
+{
+  "n_raw": 3076,
+  "class_counts_raw": {
+    "Fungi": 748,
+    "Pest": 611,
+    "Bacteria": 569,
+    "Virus": 532,
+    "Phytopthora": 347,
+    "Healthy": 201,
+    "Nematode": 68
+  },
+  "exact_dup_groups": 55,
+  "exact_conflict_groups": [
+    {
+      "sha256": "1bddf338c236d74b16b23f4c6a26e66e6cf9c21684e83d82df432bd8ab68ab87",
+      "files": [
+        "IMG_20230816_115049~2.jpg",
+        "IMG_20230816_115049~2.jpg"
+      ],
+      "labels": [
+        "Pest",
+        "Virus"
+      ]
+    },
+    {
+      "sha256": "4e678603b69834e572d6889dd8b6c79d72b824bbcbb59f7fd6fe22d3e9670f3f",
+      "files": [
+        "20230712_130852.jpg",
+        "20230712_130852.jpg"
+      ],
+      "labels": [
+        "Healthy",
+        "Pest"
+      ]
+    },
+    {
+      "sha256": "876817d09363fed6dfa7e9d59ac4151e3807b588f711f6e667f95834d70926a1",
+      "files": [
+        "20230712_115043.jpg",
+        "20230712_115043.jpg"
+      ],
+      "labels": [
+        "Fungi",
+        "Pest"
+      ]
+    },
+    {
+      "sha256": "d3290e0c108f4f585bee63b02daacf8abf192b1e1672b8eddba7a24caa900487",
+      "files": [
+        "20230802_104926298.jpg",
+        "20230802_104926298.jpg"
+      ],
+      "labels": [
+        "Fungi",
+        "Pest"
+      ]
+    },
+    {
+      "sha256": "db82b2d1f3c522a489246212f5cc38816c415450951dc06f332f8fff09a182a2",
+      "files": [
+        "20230712_150155.jpg",
+        "20230712_150155.jpg"
+      ],
+      "labels": [
+        "Fungi",
+        "Pest"
+      ]
+    },
+    {
+      "sha256": "f30fd254ce7b7a75761197882988aaf90dff521efeb2ffbe95fdbb45cc76f986",
+      "files": [
+        "20230712_122808.jpg",
+        "20230712_122808.jpg"
+      ],
+      "labels": [
+        "Nematode",
+        "Pest"
+      ]
+    }
+  ],
+  "exact_redundant_removed": 49,
+  "near_dup_pairs": 24,
+  "near_dup_cross_label": [],
+  "n_clean": 3015,
+  "n_groups": 2991,
+  "class_counts_clean": {
+    "Fungi": 740,
+    "Pest": 601,
+    "Bacteria": 569,
+    "Virus": 530,
+    "Phytopthora": 309,
+    "Healthy": 199,
+    "Nematode": 67
+  },
+  "removed": [
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Fungi/20230712_115043.jpg",
+      "label": "Fungi",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Fungi/20230712_150155.jpg",
+      "label": "Fungi",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Fungi/20230802_104926298.jpg",
+      "label": "Fungi",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Fungi/Copy of 20230712_154218.jpg",
+      "label": "Fungi",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Fungi/IMG_20230815_112512~2.jpg",
+      "label": "Fungi",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Fungi/IMG_20230815_122340~2.jpg",
+      "label": "Fungi",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Fungi/IMG_20230816_084638 (1).jpg",
+      "label": "Fungi",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Fungi/IMG_20230816_122345~2.jpg",
+      "label": "Fungi",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Healthy/20230712_121645.jpg",
+      "label": "Healthy",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Healthy/20230712_130852.jpg",
+      "label": "Healthy",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Nematode/20230712_122808.jpg",
+      "label": "Nematode",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/20230712_115043.jpg",
+      "label": "Pest",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/20230712_122808.jpg",
+      "label": "Pest",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/20230712_130852.jpg",
+      "label": "Pest",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/20230712_150155.jpg",
+      "label": "Pest",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/20230802_104926298.jpg",
+      "label": "Pest",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/IMG_0123.JPG",
+      "label": "Pest",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/IMG_0205.JPG",
+      "label": "Pest",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/IMG_0208.JPG",
+      "label": "Pest",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/IMG_0225.JPG",
+      "label": "Pest",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Pest/IMG_20230816_115049~2.jpg",
+      "label": "Pest",
+      "reason": "exact-dup label conflict"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_0261 - Copy.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_0390.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_4815.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9425.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9426.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9430.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9439.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9440.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9443.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9463.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9464.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9506.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9508.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9509.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9510.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9511.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9512.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9514.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9517.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9518.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9519.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9520.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9523.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9524.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9526.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9531.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9534.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9535.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9536.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9537.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9538.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9539.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9540.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9560.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9561.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9565.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9566.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Phytopthora/IMG_9567.JPG",
+      "label": "Phytopthora",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Virus/IMG_20230815_152740.jpg",
+      "label": "Virus",
+      "reason": "exact-dup redundant copy"
+    },
+    {
+      "path": "/workspace/data/Potato Leaf Disease Dataset in Uncontrolled Environment/Virus/IMG_20230816_115049~2.jpg",
+      "label": "Virus",
+      "reason": "exact-dup label conflict"
+    }
+  ]
+}
