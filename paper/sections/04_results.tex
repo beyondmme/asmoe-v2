@@ -1,0 +1,162 @@
+% Section 4 -- Results. Numbers are macros and \input{tables/...} blocks that
+% `python train.py paper` fills from results/.
+\section{Results}
+\label{sec:results}
+
+\subsection{Setup}
+All experiments use the cleaned dataset and the fixed group-aware 5-fold split of
+Section~\ref{sec:method_data}. Training ran with PyTorch and timm under
+automatic mixed precision. Folds 0--3 were trained on an NVIDIA T4 (fp16) and
+fold 4 on an NVIDIA RTX 4090 (bf16). Data split, hyper-parameters, schedule and
+seed are identical; only data-loader workers and activation checkpointing,
+which affect speed but not the computation, were changed. Hyper-parameters are listed in
+Section~\ref{sec:method_twostage} and in \texttt{configs/asmoe\_v2.yaml} of the
+accompanying repository. Every number is the mean $\pm$ SD over five folds.
+Tables were generated automatically on \ReportGenerated.
+
+\subsection{Main comparison}
+\label{sec:results_main}
+
+\input{tables/main_results}
+
+Table~\ref{tab:main_results} compares ASMOE~V2 with the two strongest legacy
+models, re-evaluated under the same leakage-free protocol.
+ASMOE~V2 reaches \VtwoAcc\,$\pm$\,\VtwoAccSD\,\% accuracy and
+\VtwoFOne\,$\pm$\,\VtwoFOneSD\,\% Macro-F1 (MCC \VtwoMCC), a change of
+\DeltaFOne\,pp Macro-F1 and \DeltaAcc\,pp accuracy over the legacy MobileViT-S
+baseline (\BaseFOne\,$\pm$\,\BaseFOneSD\,\% Macro-F1). Pooled over the five
+validation folds, the number of errors falls from 464 (of 3{,}076 images) to
+222 (of 3{,}012 cleaned images). ASMOE~V2 does not reach the
+$\geq95\,\%$ accuracy and Macro-F1 target set at the start of this work. The
+remaining gap is concentrated in Phytophthora and in the Fungi/Pest pair
+(Section~\ref{sec:results_perclass}). The improvement is larger than the
+fold-to-fold variation: the weakest ASMOE~V2 fold (89.05\,\% Macro-F1, 91.36\,\%
+accuracy) is above the strongest legacy fold (85.15\,\% and 86.34\,\%), and the
+SD of accuracy falls from 1.27 to 0.91\,pp. Because data cleaning,
+input resolution, training recipe and architecture all changed together, the gain
+reflects the complete pipeline rather than the mixture alone
+(Section~\ref{sec:discussion}).
+
+\begin{figure}[h]
+  \centering
+  \safegraphic[width=\textwidth]{figures/learning_curves.png}
+  \caption{ASMOE~V2 validation Macro-F1 and loss per epoch (mean $\pm$ SD over
+  five folds). The dashed line marks the end of the 5-epoch frozen-backbone
+  stage. Compare with the legacy curves in Fig.~\ref{fig:legacy_curves}.}
+  \label{fig:v2_curves}
+\end{figure}
+
+Figure~\ref{fig:v2_curves} shows that training converges: validation loss
+flattens after about 30 of the 45 epochs, and Macro-F1 changes by less than
+1\,pp over the last 15 epochs, so a longer schedule is unlikely to close the
+gap to the target.
+
+\subsection{Per-class recovery of minority classes}
+\label{sec:results_perclass}
+
+\input{tables/per_class}
+
+\begin{figure}[h]
+  \centering
+  \safegraphic{figures/per_class_f1.png}
+  \caption{Per-class F1 of the legacy baseline and ASMOE V2 (mean over 5 folds).}
+  \label{fig:per_class}
+\end{figure}
+
+The legacy model's weakest classes were Nematode (\BaseFOneNematode\,\% F1),
+Pest (\BaseFOnePest\,\%) and Healthy (\BaseFOneHealthy\,\%). ASMOE~V2 reaches
+\VtwoFOneNematode\,\% (\DeltaFOneNematode\,pp) on Nematode,
+\VtwoFOnePest\,\% (\DeltaFOnePest\,pp) on Pest and
+\VtwoFOneHealthy\,\% (\DeltaFOneHealthy\,pp) on Healthy
+(Table~\ref{tab:per_class}, Fig.~\ref{fig:per_class}).
+In the legacy model, Nematode and Healthy errors were mainly false positives
+caused by loss re-weighting (Section~\ref{sec:audit_imbalance}). The gain on
+these two classes comes mainly from higher precision. On the pooled matrices,
+Nematode precision rises from 67.0 to 82.3\,\% (false positives $30\rightarrow14$)
+and recall from 89.7 to 97.0\,\%. Healthy precision rises from 75.2 to 86.8\,\%
+(false positives $57\rightarrow29$) and recall from 86.1 to 94.5\,\%. Precision
+remains the limiting factor for both classes, so over-prediction of minority
+classes is reduced but not removed. The supervised contrastive term and the
+milder re-weighting were introduced together, so their individual contributions
+cannot be separated here. Removing the six label-conflicting duplicates, all of which
+involved Pest, removes errors that no model could avoid, so part of the Pest
+gain is a measurement correction rather than a modelling improvement.
+Re-training the legacy MobileViT-S on the cleaned split with its original recipe
+would separate the two effects.
+
+\begin{figure}[h]
+  \centering
+  \safegraphic[width=0.8\textwidth]{figures/asmoe_v2_cm.png}
+  \caption{Pooled 5-fold confusion matrix of ASMOE V2. Compare with
+  Fig.~\ref{fig:legacy_cm}.}
+  \label{fig:v2_cm}
+\end{figure}
+
+Figure~\ref{fig:v2_cm} should be read against the legacy matrix
+(Fig.~\ref{fig:legacy_cm}). Pest$\rightarrow$Fungi errors fall from 76 to 27 and
+Fungi$\rightarrow$Pest errors from 69 to 19. Virus$\rightarrow$Healthy errors
+fall from 20 to 8. Phytophthora$\rightarrow$Fungi is the only major confusion
+that does not improve (31 to 38). Consistent with this, Phytophthora has the
+smallest F1 gain (\DeltaFOnePhytopthora\,pp) and is now the weakest class
+(\VtwoFOnePhytopthora\,\%). Closing the Phytophthora/Fungi gap is the most direct
+route to higher Macro-F1.
+
+\subsection{Routing behaviour}
+\label{sec:results_routing}
+
+\begin{figure}[h]
+  \centering
+  \safegraphic{figures/router_weights.png}
+  \caption{Mean routing weight per expert, grouped by true class (validation folds).}
+  \label{fig:router}
+\end{figure}
+
+Figure~\ref{fig:router} shows the average router output for each true class. If
+the experts specialise as intended, the global-attention expert should receive
+more weight for Virus and Healthy, where the evidence is diffuse, and the
+texture expert more weight for Pest and Fungi. The observed weights only
+partly follow this hypothesis. Swin-B receives its largest mean weights on Virus
+and Pest (0.45 each), but DenseNet-201 is used mainly for Bacteria (0.51) and
+receives only 0.17 on Pest and 0.27 on Fungi. EfficientNetV2-M dominates Healthy
+(0.50) and Nematode (0.52). The routing is therefore clearly class-dependent:
+the DenseNet-201 weight ranges from 0.09 (Nematode) to 0.51 (Bacteria), and the
+fold-to-fold SD of every class-mean weight is at most 0.07. However, the learned
+division of labour is not the texture-versus-global split we expected. The
+routing is therefore input-dependent, but this study does not measure how much
+accuracy it adds over a fixed average of the same experts.
+
+\subsection{Explainability}
+\label{sec:results_xai}
+
+\begin{figure}[p]
+  \centering
+  \safegraphic[width=0.85\textwidth]{figures/gradcam_00_Bacteria.png}\\[2pt]
+  \safegraphic[width=0.85\textwidth]{figures/gradcam_01_Fungi.png}\\[2pt]
+  \safegraphic[width=0.85\textwidth]{figures/gradcam_02_Healthy.png}\\[2pt]
+  \safegraphic[width=0.85\textwidth]{figures/gradcam_03_Nematode.png}\\[2pt]
+  \safegraphic[width=0.85\textwidth]{figures/gradcam_04_Pest.png}\\[2pt]
+  \safegraphic[width=0.85\textwidth]{figures/gradcam_05_Phytopthora.png}\\[2pt]
+  \safegraphic[width=0.85\textwidth]{figures/gradcam_06_Virus.png}
+  \caption{Routing-weighted Grad-CAM for one correctly classified validation image
+  per class (fold 0). Each row shows the input, the fused map with the predicted
+  class and confidence, and the maps of the local-texture (DenseNet-201),
+  multi-scale (EfficientNetV2-M) and global-attention (Swin-B) experts with their
+  routing weights $w_e$ for that image.}
+  \label{fig:gradcam}
+\end{figure}
+
+Routing-weighted Grad-CAM (Fig.~\ref{fig:gradcam}) shows which pixels each expert
+uses and how much each expert contributes. The expert maps differ in character.
+The EfficientNetV2-M maps are compact and centred on individual lesions or leaf
+regions. The DenseNet-201 maps cover larger leaf areas when the expert receives a
+high weight (Bacteria, $w=0.67$) and are almost flat when its weight is low. The
+Swin-B maps are patchy and, in several examples (Pest, Virus), also highlight
+background regions at the image border. Because the fused map is the
+weight-averaged sum, these background responses carry through when Swin-B
+dominates the routing. The lesion-focus ratio (fraction of CAM mass inside the leaf mask,
+computed by \texttt{train.py gradcam}) quantifies this. On the eight fold-0
+examples, a mean of 79\,\% of the fused CAM mass lies inside the leaf mask. Six
+of the eight examples exceed 0.68, and three exceed 0.93. The exception is a Pest
+image with a ratio of 0.31, where most attention falls outside the colour-based
+leaf mask. Eight images are too few for a general statement, but they indicate
+that the decision usually rests on foliage rather than soil or background.

@@ -1,0 +1,18 @@
+% Abstract -- numbers are macros filled from results/ by `python train.py paper`.
+Automatic diagnosis of potato leaf diseases from field photographs is hampered by cluttered
+backgrounds, an 11-fold class imbalance and visually similar symptoms of insect and fungal damage.
+Auditing an earlier experimental campaign on the 3{,}076-image Potato Leaf Disease Dataset in
+Uncontrolled Environment, we found 55 byte-identical file groups (six of them carrying conflicting
+labels, all involving the Pest class) and 27 near-duplicate bursts. When folds were drawn at random,
+these duplicates inflated cross-validated Macro-F1 from 83.68\% to 88.16\%.
+We propose ASMOE~V2, an adaptive soft mixture of heterogeneous experts (DenseNet-201,
+EfficientNetV2-M and Swin-B) whose feature maps are aligned by a LayerNorm and $1\times1$
+convolution projection and fused by an input-conditioned soft router. The model is trained with a
+two-stage refinement schedule, discriminative learning rates, square-root class weighting and a
+supervised contrastive loss, on leaf-cropped inputs at up to $512\times512$ pixels.
+Under a leakage-free, group-aware stratified 5-fold protocol, ASMOE~V2 reaches
+\VtwoAcc\,$\pm$\,\VtwoAccSD\% accuracy and \VtwoFOne\,$\pm$\,\VtwoFOneSD\% Macro-F1
+(\DeltaFOne\,pp over the strongest legacy model), with Nematode F1 of \VtwoFOneNematode\%.
+Pest/Fungi confusions fall by about two thirds, while Phytophthora/Fungi remains the main error
+source. The learned routing is strongly class-dependent, and routing-weighted Grad-CAM shows how
+the experts divide the evidence among themselves.

@@ -1,0 +1,41 @@
+\section{Introduction}\label{sec:intro}
+
+Potato is one of the most widely consumed staple crops, and foliar diseases caused by bacteria,
+fungi, oomycetes, viruses, nematodes and insect pests are a major source of yield loss. Early,
+reliable identification from leaf images taken with ordinary phones would let growers act before
+symptoms spread. Field photographs, however, differ sharply from the curated, plain-background images
+on which most leaf-disease classifiers are benchmarked. Leaves are photographed among soil, hands and
+neighbouring plants, under changing illumination, at varying distances. Several disease classes
+produce similar necrotic or chlorotic lesions.
+
+The Potato Leaf Disease Dataset in Uncontrolled Environment~\cite{shabrina2024dataset} captures
+these conditions in 3{,}076 images of seven classes collected in Central Java, Indonesia. Transfer
+learning with single CNN backbones~\cite{shabrina2024dataset} and hybrid CNN--Transformer
+designs~\cite{saleh2025hybrid} have been evaluated on it. Recently, Hoang and
+Phan~\cite{hoang2026asmoe} proposed ASMoE, an adaptive soft mixture of EfficientNet-B0, DenseNet-121
+and Swin-Tiny experts whose input-dependent gate weights the three architectures per image. On a
+single stratified 81/9/10 split they reported 92.62\% F1.
+
+Two questions remain open. First, how much of the reported performance on this dataset reflects
+generalisation, given that the collection contains duplicated and near-duplicated photographs?
+Second, can the mixture-of-experts idea be scaled, with larger heterogeneous experts, higher input
+resolution and a training recipe aimed at the minority classes, without overfitting 3{,}000 images?
+
+This paper answers both. Our contributions are:
+\begin{enumerate}[1.]
+  \item A \textbf{forensic audit} of an earlier campaign of eight models
+  (Section~\ref{sec:baseline_audit}). It quantifies label-conflicting and redundant duplicates, the
+  leakage they cause under random splits, the confusion structure among Pest, Fungi and
+  Phytophthora, the failure of CutMix, and the under-training of the earlier models.
+  \item A \textbf{leakage-free data protocol}. Conflicting duplicates are removed, redundant copies
+  deduplicated, and near-duplicates grouped by perceptual hashing. Folds are drawn with stratified
+  group $k$-fold, and leaf regions are cropped by a foliage-and-lesion colour mask.
+  \item \textbf{ASMOE~V2}, a heterogeneous mixture (DenseNet-201, EfficientNetV2-M, Swin-B) with a
+  feature projection module, an input-adaptive soft router, multi-resolution experts and a
+  two-stage refinement schedule with supervised contrastive learning
+  (Section~\ref{sec:methodology}).
+  \item A \textbf{reproducible evaluation} against the legacy models on identical group-aware folds,
+  with per-class and confusion analysis, routing statistics and routing-weighted Grad-CAM. All
+  numbers in this manuscript are regenerated automatically from the experiment logs
+  (Section~\ref{sec:results}).
+\end{enumerate}

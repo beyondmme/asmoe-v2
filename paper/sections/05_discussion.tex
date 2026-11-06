@@ -1,0 +1,37 @@
+\section{Discussion}\label{sec:discussion}
+
+\paragraph{Evaluation protocol matters as much as architecture.}
+The legacy audit shows that the same MobileViT-S drops from 88.16\% to 83.68\% Macro-F1 when
+duplicate groups are kept within a single fold, although part of that gap is also due to a shorter
+training schedule. Results on this dataset that use random image-level splits, including our own
+legacy numbers and single-split results in the literature~\cite{hoang2026asmoe,saleh2025hybrid},
+are therefore not directly comparable with the group-aware estimates in
+Table~\ref{tab:main_results}. We recommend that future work on this collection release its fold
+assignment or adopt the grouped split used here, which is published with the code.
+
+\paragraph{Where the mixture helps.}
+The largest F1 gains over the legacy model are on Pest (\DeltaFOnePest\,pp), Nematode
+(\DeltaFOneNematode\,pp) and Healthy (\DeltaFOneHealthy\,pp), and the Pest/Fungi confusion,
+the main error source of the legacy model, falls by about two thirds (145 to 46 pooled errors).
+Bacteria was already near ceiling, and Phytophthora barely improves (\DeltaFOnePhytopthora\,pp)
+because its confusion with Fungi persists. The routing weights (Fig.~\ref{fig:router}) are
+strongly class-dependent but do not follow the intended texture-versus-global split, so the gains
+cannot yet be attributed to expert specialisation. Part of the improvement also comes from data
+cleaning, higher resolution and the new training recipe, which changed together with the
+architecture.
+
+\paragraph{Limitations.}
+\begin{itemize}
+  \item The reported gain is that of the complete pipeline; quantifying the contribution of each
+  component is left for future work.
+  \item Model selection uses the validation fold (early stopping), so the cross-validated estimate
+  is selection-informed. An external test set from another region or season would give an unbiased
+  estimate.
+  \item Each validation fold contains only 11--17 Nematode images, so Nematode F1 has a standard
+  error of several percentage points. Differences below about 5\,pp on this class should not be
+  over-interpreted.
+  \item The ROI mask is a colour heuristic. Promptable segmentation models may give cleaner crops on
+  cluttered backgrounds.
+  \item ASMOE~V2 has about 160\,M parameters, against 4.9--10.5\,M for the legacy models. Knowledge
+  distillation into a compact student is needed for on-device use.
+\end{itemize}

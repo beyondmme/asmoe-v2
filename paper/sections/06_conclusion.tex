@@ -1,0 +1,11 @@
+\section{Conclusion}\label{sec:conclusion}
+
+We audited an earlier experimental campaign on the Potato Leaf Disease Dataset in Uncontrolled
+Environment and identified label-conflicting duplicates, near-duplicate leakage,
+re-weighting-induced false positives, lesion-destroying augmentation and under-training as the main
+bottlenecks. To address them we introduced a leakage-free protocol and ASMOE~V2, a heterogeneous
+adaptive soft mixture of experts trained with two-stage refinement and supervised contrastive
+learning. Under group-aware 5-fold cross-validation, ASMOE~V2 reaches \VtwoFOne\% Macro-F1 and
+\VtwoAcc\% accuracy, compared with \BaseFOne\% and \BaseAcc\% for the strongest legacy model. Future
+work will test the model on externally collected fields, distil the mixture into a mobile-sized
+network, and replace the colour-based ROI with learned leaf segmentation.
