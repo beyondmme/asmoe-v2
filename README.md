@@ -124,7 +124,7 @@ Kaggle's weekly quota. Run ablations at 384 px (`EXTRA_OVERRIDES += ["data.image
 | EfficientNet-B0 | random | 86.87 ± 1.99 | 85.03 ± 3.27 |
 | EffNet+MobileViT ECA-gated | group-aware | 83.55 ± 2.20 | 82.12 ± 2.67 |
 | **MobileViT-S (reference baseline)** | **group-aware** | **84.92 ± 1.27** | **83.68 ± 1.42** |
-| ASMOE V2 (ours) | group-aware, cleaned | *pending* | *pending* |
+| ASMOE V2 (ours) | group-aware, cleaned | 92.63 ± 0.91 | 91.75 ± 1.88 |
 
 * **Imbalance 11×**: Fungi 748 vs. Nematode 68. Legacy Nematode errors are mostly false positives (precision 67 %, recall 90 %).
 * **Duplicates**: 55 byte-identical groups. **6 carry conflicting labels, and all 6 involve Pest**. 38 redundant Phytophthora copies; 27 near-duplicate bursts.
